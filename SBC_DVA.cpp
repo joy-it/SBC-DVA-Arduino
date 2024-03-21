@@ -73,9 +73,9 @@ void SBCDVA::reset_ina236(byte address) {
 
 // Calibrate the INA236 for the correct Shunt measurement
 void SBCDVA::calibrate_ina236() {
-  float current_lsb_min = 5 / pow(2, 15);
-  Current_lsb = current_lsb_min + 0.0000074;
-  int SHUNT_CAL = 0.00512 / (Current_lsb * 0.016);
+  float current_lsb_min = 10 / pow(2, 15);
+  Current_lsb = current_lsb_min + 0.0018;
+  int SHUNT_CAL = 0.00512 / (Current_lsb * 0.008);
   SHUNT_CAL = static_cast<int>(SHUNT_CAL);
   if (Adcrange == ADCRANGE_2) SHUNT_CAL /= 4;
   _write_register(Calibration_Reg, SHUNT_CAL);
